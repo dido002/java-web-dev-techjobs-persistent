@@ -30,6 +30,7 @@ public class EmployerController {
         model.addAttribute(new Employer());
         return "employers/add";
     }
+
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                          Errors errors, Model model){
@@ -49,7 +50,9 @@ public class EmployerController {
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
+
             return "employers/view";
+
         } else {
             model.addAttribute("employers",employerRepository.findAll());
 
